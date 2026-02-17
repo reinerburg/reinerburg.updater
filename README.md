@@ -1,7 +1,6 @@
 <div align='center'>
 
-<p>A python powered tool used for downloading the latest source-code from the Ryujinx.app website as a way to ensure a easier archival / development backup method.</p>
-<p>Some code in this tool used help of AI to assist in parts I was unfamiliar with, around 30% of the code. the other 70% was by myself</p>
+<p>A python powered tool used for downloading the latest source-code from the Ryujinx.app website as a way to ensure a easier archival / development backup method. </br></br>DISCLAIMER: Some code in this tool used help of AI to assist in parts I was unfamiliar with, around 30% of the code. the other 70% was written by me</p>
 
 <h4> <span> · </span> <a href="https://github.com/reinerburg/reinerburg.updater/blob/master/README.md"> Documentation </a> <span> · </span> <a href="https://github.com/reinerburg/reinerburg.updater/issues"> Report Bug </a> <span> · </span> <a href="https://github.com/reinerburg/reinerburg.updater/issues"> Request Feature </a> </h4>
 
