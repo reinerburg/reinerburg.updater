@@ -46,10 +46,10 @@ pip install -r requirements.txt
 
 ### :running: Run Locally
 
-Clone the project
+Clone or Download the project
 
 ```bash
-https://github.com/reinerburg/reinerburg.updater
+git clone https://github.com/reinerburg/reinerburg.updater
 ```
 Extract and Open Reinerburg Updater 1.0/
 Run ./reinerburg.updater.exe
