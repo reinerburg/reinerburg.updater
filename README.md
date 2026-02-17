@@ -70,11 +70,6 @@ Then click "Check for Updates"
 * [ ] THEME: Plastik UI
 * [ ] THEME: winxpblue UI
 
-
-### :scroll: Code of Conduct
-
-Please read the [Code of Conduct](https://github.com/reinerburg/reinerburg.updater/blob/master/CODE_OF_CONDUCT.md)
-
 ## :grey_question: FAQ
 
 - Why did you make this?
