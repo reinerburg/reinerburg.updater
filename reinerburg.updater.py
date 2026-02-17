@@ -5,10 +5,6 @@ import zipfile
 import customtkinter as ctk
 from packaging import version
 
-# ----------------------------
-# CONFIG
-# ----------------------------
-
 API_URL = "https://git.ryujinx.app/api/v4/projects/ryubing%2Fryujinx/releases"
 LOCAL_VERSION_FILE = "version.txt"
 DOWNLOAD_NAME = "ryujinx_source.zip"
@@ -24,10 +20,6 @@ TEXT = "#f8f8f2"
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("dark-blue")
-
-# ----------------------------
-# RELEASE CHECK
-# ----------------------------
 
 def get_latest_release():
     response = requests.get(API_URL, timeout=15)
@@ -47,18 +39,15 @@ def get_latest_release():
 
     return tag, zip_url
 
-
 def get_local_version():
     if not os.path.exists(LOCAL_VERSION_FILE):
         return None
     with open(LOCAL_VERSION_FILE, "r") as f:
         return f.read().strip()
 
-
 def save_local_version(ver):
     with open(LOCAL_VERSION_FILE, "w") as f:
         f.write(ver)
-
 
 def update_available(local, remote):
     if not local:
@@ -67,11 +56,6 @@ def update_available(local, remote):
         return version.parse(remote) > version.parse(local)
     except:
         return remote != local
-
-
-# ----------------------------
-# DOWNLOAD
-# ----------------------------
 
 def download_file(url, progress_callback):
     with requests.get(url, stream=True) as r:
@@ -91,20 +75,13 @@ def download_file(url, progress_callback):
 
     return DOWNLOAD_NAME
 
-
 def extract_zip(path):
     extract_folder = "Sources"
 
     with zipfile.ZipFile(path, "r") as zip_ref:
         zip_ref.extractall(extract_folder)
 
-
-# ----------------------------
-# GUI
-# ----------------------------
-
 class Updater(ctk.CTk):
-
     def __init__(self):
         super().__init__()
 
@@ -121,22 +98,16 @@ class Updater(ctk.CTk):
             self.card,
             text="Ryujinx Source Updater",
             font=("Segoe UI", 20, "bold"),
-            text_color=PURPLE
+            text_color=PURPLE,
         )
         self.title_label.pack(pady=(15, 5))
 
         self.status_label = ctk.CTkLabel(
-            self.card,
-            text="Ready to check for updates",
-            text_color=TEXT
+            self.card, text="Ready to check for updates", text_color=TEXT
         )
         self.status_label.pack(pady=5)
 
-        self.progress = ctk.CTkProgressBar(
-            self.card,
-            width=380,
-            progress_color=CYAN
-        )
+        self.progress = ctk.CTkProgressBar(self.card, width=380, progress_color=CYAN)
         self.progress.set(0)
         self.progress.pack(pady=15)
 
@@ -146,7 +117,7 @@ class Updater(ctk.CTk):
             fg_color=PURPLE,
             hover_color="#a277ff",
             text_color="black",
-            command=self.start_thread
+            command=self.start_thread,
         )
         self.button.pack(pady=10)
 
@@ -167,8 +138,7 @@ class Updater(ctk.CTk):
 
             if not update_available(local_version, remote_version):
                 self.status_label.configure(
-                    text="Already up to date ✔",
-                    text_color=GREEN
+                    text="Already up to date ✔", text_color=GREEN
                 )
                 return
 
@@ -185,24 +155,15 @@ class Updater(ctk.CTk):
             save_local_version(remote_version)
 
             self.status_label.configure(
-                text="Update completed successfully ✔",
-                text_color=GREEN
+                text="Update completed successfully ✔", text_color=GREEN
             )
 
         except Exception as e:
-            self.status_label.configure(
-                text=f"Error: {str(e)}",
-                text_color=RED
-            )
+            self.status_label.configure(text=f"Error: {str(e)}", text_color=RED)
 
         finally:
             self.progress.set(0)
             self.button.configure(state="normal")
-
-
-# ----------------------------
-# MAIN
-# ----------------------------
 
 if __name__ == "__main__":
     app = Updater()
